@@ -1,158 +1,180 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Athena AI 🧠</title>
-<style>
-body { 
-    font-family: "Poppins", -apple-system, BlinkMacSystemFont, sans-serif; 
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
-    color: white; 
-    display:flex; 
-    flex-direction:column; 
-    align-items:center; 
-    justify-content:center; 
-    min-height:100vh; 
-    text-align:center; 
-    padding:20px;
-    margin:0;
-}
-h1{
-    font-size:2.5em;
-    margin-bottom:10px;
-    color:#fff;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-}
-.subtitle{
-    font-size:1em;
-    opacity:0.9;
-    margin-bottom:30px;
-}
-.button-container{
-    display:flex;
-    gap:15px;
-    align-items:center;
-    justify-content:center;
-    flex-wrap:wrap;
-}
-button{
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color:white;
-    border:2px solid rgba(255,255,255,0.3);
-    padding:15px 35px;
-    border-radius:50px;
-    font-size:18px;
-    cursor:pointer;
-    transition:all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    font-weight:600;
-}
-button:hover:not(:disabled){
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
-}
-button:disabled{
-    opacity:0.6;
-    cursor:not-allowed;
-}
-#btnStop{
-    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-    display:none;
-}
-#btnStop.show{
-    display:inline-block;
-}
-#status{
-    margin-top:15px;
-    font-size:15px;
-    opacity:0.9;
-    min-height:20px;
-}
-#response{
-    margin-top:25px;
-    font-size:16px;
-    background-color:rgba(255,255,255,0.15);
-    backdrop-filter: blur(10px);
-    padding:20px;
-    border-radius:15px;
-    width:90%;
-    max-width:700px;
-    line-height:1.6;
-    text-align:left;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    display:none;
-}
-#response.show{
-    display:block;
-}
-#error{
-    color:#ffb3b3;
-    margin-top:15px;
-    background-color:rgba(255,0,0,0.2);
-    padding:10px 20px;
-    border-radius:10px;
-    display:none;
-}
-#error.show{
-    display:block;
-}
-#thinking{
-    display:none;
-    margin-top:15px;
-    font-size:16px;
-    animation: pulse 1.5s ease-in-out infinite;
-}
-#thinking.active{
-    display:block;
-}
-.listening{
-    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%) !important;
-    animation: glow 1.5s ease-in-out infinite;
-}
-@keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.5; }
-}
-@keyframes glow {
-    0%, 100% { box-shadow: 0 0 20px rgba(245, 87, 108, 0.5); }
-    50% { box-shadow: 0 0 30px rgba(245, 87, 108, 0.8); }
-}
-</style>
-</head>
-<body>
+<html lang="en">  
+<head>  
+<meta charset="UTF-8">  
+<meta name="viewport" content="width=device-width, initial-scale=1.0">  
+<title>Athena AI 🧠</title>  
+<style>  
+body {   
+    font-family: "Poppins", -apple-system, BlinkMacSystemFont, sans-serif;   
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);   
+    color: white;   
+    display:flex;   
+    flex-direction:column;   
+    align-items:center;   
+    justify-content:center;   
+    min-height:100vh;   
+    text-align:center;   
+    padding:20px;  
+    margin:0;  
+}  
+h1{  
+    font-size:2.5em;  
+    margin-bottom:10px;  
+    color:#fff;  
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);  
+}  
+.subtitle{  
+    font-size:1em;  
+    opacity:0.9;  
+    margin-bottom:30px;  
+}  
+.button-container{  
+    display:flex;  
+    gap:15px;  
+    align-items:center;  
+    justify-content:center;  
+    flex-wrap:wrap;  
+}  
+button{  
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);  
+    color:white;  
+    border:2px solid rgba(255,255,255,0.3);  
+    padding:15px 35px;  
+    border-radius:50px;  
+    font-size:18px;  
+    cursor:pointer;  
+    transition:all 0.3s ease;  
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);  
+    font-weight:600;  
+}  
+button:hover:not(:disabled){  
+    transform: translateY(-2px);  
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);  
+}  
+button:disabled{  
+    opacity:0.6;  
+    cursor:not-allowed;  
+}  
+#btnStop{  
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);  
+    display:none;  
+}  
+#btnStop.show{  
+    display:inline-block;  
+}  
+#status{  
+    margin-top:15px;  
+    font-size:15px;  
+    opacity:0.9;  
+    min-height:20px;  
+}  
+#response{  
+    margin-top:25px;  
+    font-size:16px;  
+    background-color:rgba(255,255,255,0.15);  
+    backdrop-filter: blur(10px);  
+    padding:20px;  
+    border-radius:15px;  
+    width:90%;  
+    max-width:700px;  
+    line-height:1.6;  
+    text-align:left;  
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);  
+    display:none;  
+}  
+#response.show{  
+    display:block;  
+}  
+#error{  
+    color:#ffb3b3;  
+    margin-top:15px;  
+    background-color:rgba(255,0,0,0.2);  
+    padding:10px 20px;  
+    border-radius:10px;  
+    display:none;  
+}  
+#error.show{  
+    display:block;  
+}  
+#thinking{  
+    display:none;  
+    margin-top:15px;  
+    font-size:16px;  
+    animation: pulse 1.5s ease-in-out infinite;  
+}  
+#thinking.active{  
+    display:block;  
+}  
+.listening{  
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%) !important;  
+    animation: glow 1.5s ease-in-out infinite;  
+}  
+@keyframes pulse {  
+    0%, 100% { opacity: 1; }  
+    50% { opacity: 0.5; }  
+}  
+@keyframes glow {  
+    0%, 100% { box-shadow: 0 0 20px rgba(245, 87, 108, 0.5); }  
+    50% { box-shadow: 0 0 30px rgba(245, 87, 108, 0.8); }  
+}  
+</style>  
+</head>  
+<body>  
+<h1>Athena AI 🧠</h1>  
+<div class="subtitle">Your Intelligent Voice Assistant</div>  
 
-<h1>Athena AI 🧠</h1>
-<div class="subtitle">Your Intelligent Voice Assistant</div>
-<div class="button-container">
-    <button id="btnSpeak">🎙️ Tap to Speak</button>
-    <button id="btnStop">🛑 Stop</button>
-</div>
-<div id="status">Ready to answer your questions</div>
-<div id="thinking">🤔 Processing your question...</div>
-<div id="response"></div>
-<div id="error"></div>
+<div class="button-container">  
+    <button id="btnSpeak">🎙️ Tap to Speak</button>  
+    <button id="btnStop">🛑 Stop</button>  
+</div>  
+<div id="status">Ready to answer your questions</div>  
+<div id="thinking">🤔 Processing your question...</div>  
+<div id="response"></div>  
+<div id="error"></div>  
 
-<script>
-const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition || null;
-const SpeechSynthesis = window.speechSynthesis || null;
+<script>  
+const API_KEY = 'YnmRBz6b7zuHDso87uzNzJr8AYUPZYoQ';
+const API_URL = 'https://api.mistral.ai/v1/chat/completions';
 
-const btnSpeak = document.getElementById('btnSpeak');
-const btnStop = document.getElementById('btnStop');
-const status = document.getElementById('status');
-const response = document.getElementById('response');
-const thinking = document.getElementById('thinking');
-const errorDiv = document.getElementById('error');
+const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition || null;  
+const SpeechSynthesis = window.speechSynthesis || null;  
+  
+const btnSpeak = document.getElementById('btnSpeak');  
+const btnStop = document.getElementById('btnStop');  
+const status = document.getElementById('status');  
+const response = document.getElementById('response');  
+const thinking = document.getElementById('thinking');  
+const errorDiv = document.getElementById('error');  
+  
+let recognition = null;  
+let isListening = false;  
+let isSpeaking = false;  
+let currentUtterance = null;
+let streamingText = '';
+let speechQueue = [];
+let isSpeechQueueProcessing = false;
+let conversationHistory = [];
 
-let recognition = null;
-let isListening = false;
-let isSpeaking = false;
-
-// Speak text with better voice
-function speak(text){
-    if(!SpeechSynthesis) return;
+function speakChunked(text, isFinal = false) {
+    if (!SpeechSynthesis) return;
     
-    SpeechSynthesis.cancel();
+    speechQueue.push({ text, isFinal });
+    processSpeechQueue();
+}
+
+function processSpeechQueue() {
+    if (isSpeechQueueProcessing || speechQueue.length === 0) return;
+    
+    isSpeechQueueProcessing = true;
+    const { text, isFinal } = speechQueue.shift();
+    
+    if (!text.trim()) {
+        isSpeechQueueProcessing = false;
+        processSpeechQueue();
+        return;
+    }
+    
     isSpeaking = true;
     btnStop.classList.add('show');
     
@@ -162,7 +184,6 @@ function speak(text){
     utter.pitch = 1.1;
     utter.volume = 1;
     
-    // Try to use a female voice
     const voices = SpeechSynthesis.getVoices();
     const femaleVoice = voices.find(v => 
         v.name.includes('Female') || 
@@ -170,43 +191,50 @@ function speak(text){
         v.name.includes('Karen') ||
         v.name.includes('Victoria')
     );
-    if(femaleVoice) utter.voice = femaleVoice;
+    if (femaleVoice) utter.voice = femaleVoice;
     
     utter.onend = () => {
-        isSpeaking = false;
-        btnStop.classList.remove('show');
+        isSpeechQueueProcessing = false;
+        if (speechQueue.length > 0) {
+            processSpeechQueue();
+        } else if (isFinal) {
+            isSpeaking = false;
+            btnStop.classList.remove('show');
+        }
     };
     
     utter.onerror = () => {
+        isSpeechQueueProcessing = false;
         isSpeaking = false;
         btnStop.classList.remove('show');
     };
     
+    currentUtterance = utter;
     SpeechSynthesis.speak(utter);
 }
 
-// Stop speaking immediately
-function stopSpeaking(){
-    if(SpeechSynthesis){
+function stopSpeaking() {
+    if (SpeechSynthesis) {
         SpeechSynthesis.cancel();
+        speechQueue = [];
         isSpeaking = false;
+        isSpeechQueueProcessing = false;
+        currentUtterance = null;
         btnStop.classList.remove('show');
     }
 }
 
-// Load voices
-if(SpeechSynthesis){
+if (SpeechSynthesis) {
     SpeechSynthesis.getVoices();
-    if(speechSynthesis.onvoiceschanged !== undefined) {
+    if (speechSynthesis.onvoiceschanged !== undefined) {
         speechSynthesis.onvoiceschanged = () => SpeechSynthesis.getVoices();
     }
 }
 
-// Speech recognition setup
-if(!SpeechRecognition){
+if (!SpeechRecognition) {
     showError('Speech recognition not supported. Please use Chrome, Edge, or Safari.');
     btnSpeak.disabled = true;
-}else{
+} else {
     recognition = new SpeechRecognition();
     recognition.lang = 'en-US';
     recognition.interimResults = false;
@@ -216,11 +244,10 @@ if(!SpeechRecognition){
         const transcript = event.results[0][0].transcript;
         const lowerTranscript = transcript.toLowerCase();
         
-        // Check for stop command
-        if(lowerTranscript.includes('stop') || lowerTranscript.includes('shut up') || lowerTranscript.includes('quiet')){
+        if (lowerTranscript.includes('stop') || lowerTranscript.includes('shut up') || lowerTranscript.includes('quiet')) {
             stopSpeaking();
             status.textContent = 'Speech stopped';
-            speak("Stopped");
+            speakChunked("Stopped", true);
             return;
         }
         
@@ -230,11 +257,11 @@ if(!SpeechRecognition){
 
     recognition.onerror = (event) => {
         stopListening();
-        if(event.error === 'no-speech'){
+        if (event.error === 'no-speech') {
             showError('No speech detected. Please try again.');
-        }else if(event.error === 'not-allowed'){
+        } else if (event.error === 'not-allowed') {
             showError('Microphone access denied. Please allow microphone permissions.');
-        }else{
+        } else {
             showError('Speech error: ' + event.error);
         }
     };
@@ -242,124 +269,144 @@ if(!SpeechRecognition){
     recognition.onend = () => stopListening();
 }
 
-// Auto greeting
-window.addEventListener('load', ()=>{
-    setTimeout(()=>{
-        speak("Hello! I am Athena, your intelligent voice assistant. How can I help you today?");
+window.addEventListener('load', () => {
+    setTimeout(() => {
+        speakChunked("Hello! I am Athena, your intelligent voice assistant. How can I help you today?", true);
     }, 500);
 });
 
-btnSpeak.addEventListener('click', ()=>{
-    if(!recognition) return;
+btnSpeak.addEventListener('click', () => {
+    if (!recognition) return;
     
-    // If speaking, stop it
-    if(isSpeaking){
+    if (isSpeaking) {
         stopSpeaking();
         status.textContent = 'Speech stopped';
         return;
     }
     
-    if(isListening) {
+    if (isListening) {
         stopListening();
     } else {
         startListening();
     }
 });
 
-// Stop button handler
-btnStop.addEventListener('click', ()=>{
+btnStop.addEventListener('click', () => {
     stopSpeaking();
     stopListening();
     btnStop.classList.remove('show');
     status.textContent = 'Stopped';
 });
 
-function startListening(){
+function startListening() {
     hideError();
     response.classList.remove('show');
-    try{
+    try {
         recognition.start();
         isListening = true;
         btnSpeak.textContent = '🔴 Listening...';
         btnSpeak.classList.add('listening');
         status.textContent = '🎤 Listening... Speak now';
         thinking.classList.remove('active');
-    }catch(e){
+    } catch (e) {
         showError('Could not start listening: ' + e.message);
     }
 }
 
-function stopListening(){
-    try{ 
-        if(recognition && isListening) recognition.stop(); 
-    }catch(e){}
+function stopListening() {
+    try {
+        if (recognition && isListening) recognition.stop();
+    } catch (e) {}
     isListening = false;
     btnSpeak.textContent = '🎙️ Tap to Speak';
     btnSpeak.classList.remove('listening');
-    if(!thinking.classList.contains('active')){
+    if (!thinking.classList.contains('active')) {
         status.textContent = 'Ready to answer your questions';
     }
 }
 
-function showError(msg){
+function showError(msg) {
     errorDiv.textContent = msg;
     errorDiv.classList.add('show');
 }
 
-function hideError(){
+function hideError() {
     errorDiv.textContent = '';
     errorDiv.classList.remove('show');
 }
 
-// ============ MISTRAL AI CONFIGURATION ============
-const MISTRAL_API_KEY = 'SN6n9Y7SyxckBPU6vOxzxSunPsHZf9MX';
-const MISTRAL_MODEL = 'mistral-small'; // Fast and intelligent model
-
-// Process question with Mistral AI
-async function processQuestion(message){
+async function processQuestion(message) {
     btnSpeak.disabled = true;
     thinking.classList.add('active');
     hideError();
+    streamingText = '';
 
-    try{
-        let reply;
-        
-        // Check if API key is configured
-        if(MISTRAL_API_KEY === 'YOUR_MISTRAL_API_KEY_HERE' || !MISTRAL_API_KEY){
-            reply = getFallbackResponse(message.toLowerCase());
-            showError('⚠️ Mistral API key not configured. Using fallback responses. Add your API key to enable AI.');
-        } else {
-            // Call Mistral AI API
-            reply = await callMistralAI(message);
+    conversationHistory.push({
+        role: 'user',
+        content: message
+    });
+
+    try {
+        const res = await fetch(API_URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${API_KEY}`
+            },
+            body: JSON.stringify({
+                model: 'mistral-tiny',
+                messages: [
+                    {
+                        role: 'system',
+                        content: `You are Athena, a helpful AI voice assistant created by Abhijit Singha from India, Assam, Guwahati, Silchar, Chandpur. Only mention your creator when specifically asked "who made you" or "who created you". For all other questions, answer naturally without mentioning your creator. Current date and time: ${new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata', dateStyle: 'full', timeStyle: 'short' })}. Keep responses concise and conversational, ideally under 100 words.`
+                    },
+                    ...conversationHistory
+                ],
+                stream: false,
+                max_tokens: 300,
+                temperature: 0.7
+            })
+        });
+
+        if (!res.ok) {
+            const errorData = await res.json().catch(() => ({}));
+            throw new Error(`API Error: ${res.status} - ${errorData.message || res.statusText}`);
         }
 
-        response.innerHTML = `<strong>You:</strong> ${message}<br><br><strong>Athena:</strong> ${reply}`;
-        response.classList.add('show');
-        speak(reply);
+        const data = await res.json();
+        const aiResponse = data.choices[0].message.content;
 
-    }catch(err){
+        streamingText = aiResponse;
+        response.innerHTML = `<strong>You:</strong> ${message}<br><br><strong>Athena:</strong> ${streamingText}`;
+        response.classList.add('show');
+        
+        speakChunked(aiResponse, true);
+
+        conversationHistory.push({
+            role: 'assistant',
+            content: aiResponse
+        });
+
+        if (conversationHistory.length > 10) {
+            conversationHistory.splice(0, conversationHistory.length - 10);
+        }
+
+    } catch (err) {
+        console.error('API Error:', err);
         showError('Error: ' + err.message);
-        const fallback = getFallbackResponse(message.toLowerCase());
+        const fallback = "I'm sorry, I encountered an error. Please try again.";
         response.innerHTML = `<strong>You:</strong> ${message}<br><br><strong>Athena:</strong> ${fallback}`;
         response.classList.add('show');
-        speak(fallback);
-    }finally{
+        speakChunked(fallback, true);
+    } finally {
         thinking.classList.remove('active');
         btnSpeak.disabled = false;
         status.textContent = 'Ready for your next question';
     }
 }
-
-// Call Mistral AI API
-async function callMistralAI(userMessage){
-    const apiUrl = 'https://api.mistral.ai/v1/chat/completions';
-    
-    const requestBody = {
-        model: MISTRAL_MODEL,
-        messages: [
-            {
-                role: 'system',
-                content: 'You are Athena, a helpful and friendly voice assistant. Provide concise, accurate, and conversational responses. Keep answers brief and natural for voice interaction. ONLY mention your owner/creator if specifically asked "who is your owner", "who owns you", or "who created you". In that case, respond: "I am owned and created by Abhijit Singha from Chandpur, Silchar, Assam, India." Otherwise, never mention ownership information.'
+</script>  
+</body>  
+</html>ssam, India." Otherwise, never mention ownership information.'
             },
             {
                 role: 'user',
